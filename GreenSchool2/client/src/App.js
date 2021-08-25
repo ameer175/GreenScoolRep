@@ -5,6 +5,9 @@ import 'semantic-ui-css/semantic.min.css';
 import NavigationBar from './components/Navbar/NavigationBar';
 import RegisterConfirm from './pages/RegisterConfirm';
 import {AuthProvider} from './context/auth';
+import Profile from './pages/Profile';
+import {LoggedInRoute , LoggedOutRoute} from './util/AuthRoute';
+
 
 
 function App() {
@@ -14,9 +17,11 @@ function App() {
     <AuthProvider>
       <Router>
         <NavigationBar />
-        <Route exact path='/' component={Home}/>
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/register' component={RegisterConfirm}/>
+        <LoggedOutRoute exact path='/' component={Home}/>
+        <LoggedInRoute exact path='/login' component={Login}/>
+        <LoggedInRoute exact path='/register' component={RegisterConfirm}/>
+        <LoggedOutRoute exact path='/:userId/profile' component={Profile}/>
+
       </Router>
     </AuthProvider>
 

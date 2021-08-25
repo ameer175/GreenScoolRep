@@ -4,22 +4,38 @@ import {Navbar , Nav } from 'react-bootstrap';
 import './NavigationBar.css';
 import { Container, Icon, Loader } from 'semantic-ui-react';
 import {AuthContext} from '../../context/auth';
-import { gql, useQuery,useSubscription } from '@apollo/react-hooks';
+import { gql, useMutation, useQuery,useSubscription } from '@apollo/react-hooks';
 import { FETCH_USER } from '../../util/GraphQL';
 import {Image} from 'cloudinary-react';
-import image from '../../images/upload.png';
 
 
+const NEW_LIKE = gql`
+
+    subscription{
+        newLike{
+            id
+            description
+            commentCount
+            username
+            name
+        }
+    }
+
+`;
 
 
 const NavigationBar = () => {
         const context = useContext(AuthContext);
+        const s='sad';
         const {loading,data} = useQuery(FETCH_USER,{
             variables:{
                 username: context.user? context.user.username : null
             }
         });
 
+        const { data: notifData , loading:notifLoad } = useSubscription(
+            NEW_LIKE
+          );
         return (     
             <Container style={{width:'100%' , padding:'0'}}>
                   
@@ -33,7 +49,7 @@ const NavigationBar = () => {
                       
                         {context.user &&<>
                             {loading?  <Loader active inline='centered' /> : ( data && <> 
-                                <Nav.Link id="miniuser">   <Image  style={{borderRadius:'50%' , height: '50px' , width:'50px' ,  verticalAlign: 'middle' }}  src={image} /></Nav.Link>
+                                <Nav.Link id="miniuser">   <Image  style={{borderRadius:'50%' , height: '50px' , width:'50px' ,  verticalAlign: 'middle' }}  /></Nav.Link>
                                 <Nav.Link id="miniuser" style={{ fontFamily:'Calibri', marginLeft:'-22px' }} href={`/${data.getUser.username}/Profile`}>{data.getUser.name}</Nav.Link>
                                 
                             </>)}
@@ -43,7 +59,16 @@ const NavigationBar = () => {
                         <Nav className="ml-auto">
                             
                            
+                            <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }}   id="Home" href="/AllUsers">משתמשים</Nav.Link>
+                            <div id='v2' className="vl"></div>
+                            {context.user.type==='1' && <> 
+                            <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/statistics">נתונים סטטיסטיים</Nav.Link>
+                            <div id='v2' className="vl"></div>
+                            <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/organizations">ארגונים ירוקים</Nav.Link> </>}
 
+
+                            {context.user.type==='2' && <>
+                            <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/TableHelp">טבלת השוואות</Nav.Link> </>}
 
                             <div id='v2' className="vl"></div>
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }}   id="Home" href={`/${context.user.username}/Profile`}>פרופיל שלי</Nav.Link>
