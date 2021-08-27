@@ -3,13 +3,15 @@ import { useContext, useState } from 'react';
 import {Container, Button, Form, Grid, Header,  Segment } from 'semantic-ui-react';
 import {useMutation} from '@apollo/react-hooks';
 import useForm from '../util/hooks';
+import { useHistory } from "react-router-dom";
 import {AuthContext} from '../context/auth';
 
 
 const Login = props => {
     const context = useContext(AuthContext);
     const [errors,setErrors] =useState({});
-   
+    const history = useHistory();
+
 
     const {onChange , onSubmit , values } = useForm(Signin,{
         username: '',
@@ -33,7 +35,10 @@ const Login = props => {
     function Signin(){
         loginUser();
     }
-
+    const register = () =>{ 
+        let path = 'register'; 
+        history.push(path);
+    }
    
 
 
@@ -61,8 +66,11 @@ const Login = props => {
                     placeholder='Password'
                     type='password'
                 />        
-                <Button type="submit" color='green' fluid size='large'>
+                <Button type="submit"  color='green' fluid size='large'>
                     Login
+                </Button>
+                <Button  color='white'  onClick={register} style={{ marginTop: '10px' }} fluid size='large'>
+                    Signup
                 </Button>
                 </Segment>
             </Form>

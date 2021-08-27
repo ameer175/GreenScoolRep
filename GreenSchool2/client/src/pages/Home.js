@@ -51,7 +51,7 @@ const Home = () => {
                         </div>
 
               
-                    { UserData.getUser.username.charAt(0) === 'S' &&
+                    { UserData.getUser.username.charAt(0).toUpperCase() === 'S'  &&
                         <div  id="test" className="rightfixed">
 
                             <div className="sidebarright">

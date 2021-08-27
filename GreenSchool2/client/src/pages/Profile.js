@@ -258,7 +258,7 @@ const Profile = () => {
 
                         {loading ? ( <Loader active inline='centered' />) : (
                                      
-                        <> {data && data.getUser.username.charAt(0)==='S' &&  
+                        <> {data && data.getUser.username.charAt(0).toUpperCase() ==='S' &&  
                         <div id='test' className="rightfixed">
 
                             <div className="sidebarright">

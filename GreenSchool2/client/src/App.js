@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import 'semantic-ui-css/semantic.min.css';
 import NavigationBar from './components/Navbar/NavigationBar';
-import RegisterConfirm from './pages/RegisterConfirm';
+import Register from './pages/Register';
 import {AuthProvider} from './context/auth';
 import Profile from './pages/Profile';
 import {LoggedInRoute , LoggedOutRoute} from './util/AuthRoute';
@@ -19,7 +19,7 @@ function App() {
         <NavigationBar />
         <LoggedOutRoute exact path='/' component={Home}/>
         <LoggedInRoute exact path='/login' component={Login}/>
-        <LoggedInRoute exact path='/register' component={RegisterConfirm}/>
+        <LoggedInRoute exact path='/register' component={Register}/>
         <LoggedOutRoute exact path='/:userId/profile' component={Profile}/>
 
       </Router>
