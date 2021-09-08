@@ -49,7 +49,7 @@ const NavigationBar = () => {
                       
                         {context.user &&<>
                             {loading?  <Loader active inline='centered' /> : ( data && <> 
-                                <Nav.Link id="miniuser">   <Image  style={{borderRadius:'50%' , height: '50px' , width:'50px' ,  verticalAlign: 'middle' }}  /></Nav.Link>
+                                <Nav.Link id="miniuser">   <Image  style={{borderRadius:'50%' , height: '50px' , width:'50px' ,  verticalAlign: 'middle' }}   cloudName='ddlf8wxvm' publicId={data.getUser.image}/></Nav.Link>
                                 <Nav.Link id="miniuser" style={{ fontFamily:'Calibri', marginLeft:'-22px' }} href={`/${data.getUser.username}/Profile`}>{data.getUser.name}</Nav.Link>
                                 
                             </>)}
@@ -61,21 +61,31 @@ const NavigationBar = () => {
                            
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }}   id="Home" href="/AllUsers">משתמשים</Nav.Link>
                             <div id='v2' className="vl"></div>
-                            {context.user.type==='1' && <> 
+                            {context.user.type==='1' && <> <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/">הטבות</Nav.Link>
+                            <div id='v2' className="vl"></div>
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/statistics">נתונים סטטיסטיים</Nav.Link>
                             <div id='v2' className="vl"></div>
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/organizations">ארגונים ירוקים</Nav.Link> </>}
 
 
                             {context.user.type==='2' && <>
+                            <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/GraphHelp">גרף השוואות</Nav.Link>
+                            <div id='v2' className="vl"></div>
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/TableHelp">טבלת השוואות</Nav.Link> </>}
 
+                            <div id='v2' className="vl"></div>
+                            <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }}  id="Home" href="/">לוח שנה</Nav.Link>
                             <div id='v2' className="vl"></div>
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }}   id="Home" href={`/${context.user.username}/Profile`}>פרופיל שלי</Nav.Link>
                             <div id='v2' className="vl"></div>
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }}   id="Home" href="/">דף הבית</Nav.Link>
                             <div id='v2' className="vl"></div>
-
+                            <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} class="notif" id="notif" href="#"><Icon name='bell'></Icon>
+                            <div id="notify"  >
+                                    <hr style={{background:'white',width:'90%'}}></hr>
+                                    <p>{notifLoad? 'Loading...' : notifData && notifData.newLike.username}</p>
+                            </div>
+                            </Nav.Link>
        
                         </Nav></>}
                        

@@ -154,7 +154,7 @@ const Profile = () => {
                                            {  loading? <Loader active inline='centered' /> : (
                                                     <>{ data &&
                                                         <> 
-                                                            <Card.Description   className=" text-center pb-4"><Image style={{borderRadius:'50%' , height: '150px' , width:'160px' ,  verticalAlign: 'middle' }}    /></Card.Description>
+                                                            <Card.Description   className=" text-center pb-4"><Image style={{borderRadius:'50%' , height: '150px' , width:'160px' ,  verticalAlign: 'middle' }}    cloudName='ddlf8wxvm' publicId={data.getUser.image}/></Card.Description>
                                                             <Card.Header style={{textAlign:'center' , fontFamily:'Calibri', fontSize:'25px'}}>{data.getUser.name}</Card.Header>
                                                             <Card.Meta style={{textAlign:'center' , color:'gray', fontFamily:'Calibri', fontSize:'20px'}}>{data.getUser.address}</Card.Meta>
                                                         </>
@@ -186,7 +186,7 @@ const Profile = () => {
                                                                             <>
                                                                             {
                                                                                 image==null? <Loader active inline='centered' /> :
-                                                                                <Image style={{borderRadius:'50%' , height: '150px' , width:'160px' ,  verticalAlign: 'middle' }}   />  
+                                                                                <Image style={{borderRadius:'50%' , height: '150px' , width:'160px' ,  verticalAlign: 'middle' }}    cloudName='ddlf8wxvm' publicId={image}/>  
                                                                             }
                                                                             </>
                                                                         }   
@@ -253,12 +253,23 @@ const Profile = () => {
                                     
                    
 
-                               
+                               {loadingPosts? <div className="pt-5 mt-5"><Loader active inline='centered' /> </div>: (
+                                   <div id="grid2" className="pt-5 pb-5 pr-2 mr-5">
+                                                    { context.user.username === userId &&
+                                                        <div>
+                                                            <PostUpload />
+                                                        </div>
+                                                    }
+
+                                       {PostsData && <PostList items={PostsData.getPosts.filter(post => post.username === userId)}/>}
+                                    </div>
+                               )}
+                             
                         </div>
 
                         {loading ? ( <Loader active inline='centered' />) : (
                                      
-                        <> {data && data.getUser.username.charAt(0).toUpperCase() ==='S' &&  
+                        <> {data && data.getUser.username.charAt(0)==='S' &&  
                         <div id='test' className="rightfixed">
 
                             <div className="sidebarright">

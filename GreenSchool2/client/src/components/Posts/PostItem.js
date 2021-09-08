@@ -1,10 +1,15 @@
 import { Button, Confirm, Icon, Label , Loader, Modal } from "semantic-ui-react";
-
+import school1 from '../../images/school1.jpeg';
+import school2 from '../../images/school2.jpeg';
+import egod from '../../images/egod.jpeg';
+import G1 from '../../images/G1.jpg';
 
 import moment from 'moment';
 import { Link } from "react-router-dom";
 import {AuthContext} from '../../context/auth';
 import { useContext, useState } from "react";
+import LikeButton from '../LikeButton';
+import MyPopup from "../../util/MyPopup";
 import {Image} from 'cloudinary-react';
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { FETCH_POSTS_QUERY, FETCH_USER } from "../../util/GraphQL";
@@ -78,7 +83,8 @@ const PostItem = ({post:{description,id,name,username,createdAt,likeCount,commen
                 </Link>
                 <div className="likedislike pt-4">
                     
-
+                    <LikeButton user={context.user} post={{ id,likes,likeCount  }}/>  
+                    <MyPopup content="Comment on post">
                     <Button labelPosition="right" as={Link} to={`/posts/${id}`}>
                         <Button color="blue" basic>
                         <Icon name="comments" />
@@ -88,6 +94,7 @@ const PostItem = ({post:{description,id,name,username,createdAt,likeCount,commen
                         </Label>
                     </Button>
                    
+                    </MyPopup>
    
 
                     

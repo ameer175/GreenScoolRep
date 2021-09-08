@@ -37,7 +37,7 @@ const GarphStatistics = props => {
         userOb.value= user.username;
         if(user.username === Madad)
                 tempUser=user;
-        if(user.username.charAt(0).ToUpperCase() !== 'E')
+        if(user.username.charAt(0) !== 'E')
         test(userOb);
     });
 

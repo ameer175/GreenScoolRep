@@ -1,7 +1,10 @@
 import {useQuery} from '@apollo/react-hooks';
+import school1 from '../images/school1.jpeg';
+import school2 from '../images/school2.jpeg';
+import egod from '../images/egod.jpeg';
 import '../css/Home.css';
 import '../css/Header.css';
-import image from '../images/upload.png';
+import PostList from '../components/Posts/PostList';
 import PostUpload from '../components/Posts/PostUpload';
 import  {FETCH_POSTS_QUERY , FETCH_USER} from '../util/GraphQL';
 import {AuthContext} from '../context/auth';
@@ -17,7 +20,7 @@ const Home = () => {
    
     const date = new Date().getMonth();
     const auth = useContext(AuthContext);
-
+    const {loading , data} = useQuery(FETCH_POSTS_QUERY);
     
     const {loading : loadingUser ,data:UserData} = useQuery(FETCH_USER,{
         variables:{
@@ -40,7 +43,7 @@ const Home = () => {
                         <div id='test' className="leftfixed">
                             <div  className="sidebarleft text-center p-4">
                         
-                                    <Image src={image} />
+                                    <Image  cloudName='ddlf8wxvm' publicId={UserData.getUser.image}/>
                                     <p id="sidename">{UserData.getUser.name}</p>
                                     <p id="ssn">{UserData.getUser.address}</p>
                                     <p id="country">{UserData.getUser.phone}</p>
@@ -51,7 +54,7 @@ const Home = () => {
                         </div>
 
               
-                    { UserData.getUser.username.charAt(0).toUpperCase() === 'S'  &&
+                    { UserData.getUser.username.charAt(0) === 'S' &&
                         <div  id="test" className="rightfixed">
 
                             <div className="sidebarright">
@@ -79,11 +82,46 @@ const Home = () => {
                             <hr />
 
         
+                            <div id="allpost"  className="allpost">
+                            {loading ? (
+                                <Loader active inline='centered' />
+                            ): (
+                                <div>
+                                    { data && <PostList items={data.getPosts} />}
+                                </div>
+                            )}	 
+
+                            </div>
+
                         </div>
+
+
+
+
+
+
+
+
+
 
 
                     </div>
                 </div>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
          </div>
 
