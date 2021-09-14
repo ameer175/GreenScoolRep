@@ -15,7 +15,7 @@ const Register = () => {
 
   
     const [addUser , {loading}] = useMutation(REGISTER_USER,{
-
+        
         onError(err){
             setErrors(err && err.graphQLErrors[0]?err.graphQLErrors[0].extensions.exception.errors: {});
         },

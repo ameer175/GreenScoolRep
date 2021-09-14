@@ -34,6 +34,9 @@ const Login = props => {
         loginUser();
     }
 
+    function Signup(){
+        props.history.push('/Secret-Backdoor-Register');
+    }
    
 
 
@@ -63,6 +66,9 @@ const Login = props => {
                 />        
                 <Button type="submit" color='green' fluid size='large'>
                     Login
+                </Button>
+                <Button style={{marginTop:'5px'}} onClick={Signup} color='white' fluid size='large'>
+                    Signup
                 </Button>
                 </Segment>
             </Form>

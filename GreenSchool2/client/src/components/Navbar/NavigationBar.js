@@ -61,8 +61,7 @@ const NavigationBar = () => {
                            
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }}   id="Home" href="/AllUsers">משתמשים</Nav.Link>
                             <div id='v2' className="vl"></div>
-                            {context.user.type==='1' && <> <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/">הטבות</Nav.Link>
-                            <div id='v2' className="vl"></div>
+                            {context.user.type==='1' && <> 
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/statistics">נתונים סטטיסטיים</Nav.Link>
                             <div id='v2' className="vl"></div>
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/organizations">ארגונים ירוקים</Nav.Link> </>}
@@ -73,8 +72,6 @@ const NavigationBar = () => {
                             <div id='v2' className="vl"></div>
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }} id="Home" href="/TableHelp">טבלת השוואות</Nav.Link> </>}
 
-                            <div id='v2' className="vl"></div>
-                            <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }}  id="Home" href="/">לוח שנה</Nav.Link>
                             <div id='v2' className="vl"></div>
                             <Nav.Link style={{fontSize:'larger' , fontFamily:'Calibri' }}   id="Home" href={`/${context.user.username}/Profile`}>פרופיל שלי</Nav.Link>
                             <div id='v2' className="vl"></div>
